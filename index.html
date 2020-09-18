@@ -5,18 +5,46 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 
 <body>
 
-	Cita <input type="textarea" id="cita">
-	Autor <input type="text" id="autor">
-	Imagen <input type="text" id="imagen">
+	<div class="container">
 
-	<button onclick="guardarCita();">Guardar</button>
-	<button onclick="verCita();">Ver Cita</button>
+		<div class="row col-6 mt-4">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Autor</span>
+				</div>
+				<input type="text" class="form-control" id="autor" placeholder="Ingrese el Autor">
+			</div>
+		</div>
 
-	<div id="contenedor"></div>
+		<div class="row col-6 mt-2">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Cita</span>
+				</div>
+				<textarea class="form-control" id="cita" rows="3"></textarea>
+			</div>
+		</div>
+
+		<div class="row col-6 mt-1">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Imagen</span>
+				</div>
+				<input type="text" class="form-control" id="imagen" placeholder="Ingrese URL de imagen">
+			</div>
+		</div>
+
+		<button type="button" class="btn btn-success" onclick="guardarCita();">Guardar</button>
+		<button type="button" class="btn btn-primary" onclick="verCita();">Ver Citas</button>
+
+		<blockquote id="contenedor" class="blockquote text-center"></blockquote>
+
+	</div>
 
 	<script>
 
@@ -42,11 +70,13 @@
 
 			var contenedor = document.getElementById("contenedor");
 
+			contenedor.innerHTML = "";
+
 			citas.map(cita => {
 				contenedor.innerHTML += `
-					<h3>${cita.autor}</h3>
-					<p>${cita.cita}</p>
-					<img src=${cita.imagen}>
+					<img src=${cita.imagen} class="img-thumbnail rounded mx-auto d-block">
+					<p class="mb-0">${cita.cita}</p>
+					<footer class="blockquote-footer mb-3">${cita.autor}</footer>
 				`;
 			});
 		}
