@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+	Cita <input type="textarea" id="cita">
+	Autor <input type="text" id="autor">
+	Imagen <input type="text" id="imagen">
+
+	<button onclick="guardarCita();">Guardar</button>
+	<button onclick="verCita();">Ver Cita</button>
+
+	<div id="contenedor"></div>
+
+	<script>
+
+		var citas = [];
+
+		function guardarCita() {
+			var citasDatos = {};
+
+			var cita = document.getElementById("cita").value;
+			var autor = document.getElementById("autor").value;
+			var imagen = document.getElementById("imagen").value;
+
+			citasDatos.cita = cita;
+			citasDatos.autor = autor;
+			citasDatos.imagen = imagen;
+			citas.push(citasDatos);
+
+			// console.log(citasDatos);
+			console.log(citas);
+		}
+
+		function verCita() {
+
+			var contenedor = document.getElementById("contenedor");
+
+			citas.map(cita => {
+				contenedor.innerHTML += `
+					<h3>${cita.autor}</h3>
+					<p>${cita.cita}</p>
+					<img src=${cita.imagen}>
+				`;
+			});
+		}
+
+	</script>
+
+</body>
+
+</html>
